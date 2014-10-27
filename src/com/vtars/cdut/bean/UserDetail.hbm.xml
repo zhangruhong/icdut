@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-10-25 22:20:33 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class name="com.vtars.cdut.bean.UserDetail" table="MY_USERDETAIL">
+		<id name="userDetailid" type="java.lang.String">
+			<column name="USERDETAIL_ID" />
+			<generator class="foreign">
+				<param name="property">user</param>
+			</generator>
+		</id>
+		<property name="idCardNo" type="java.lang.String">
+			<column name="IDCARDNO" />
+		</property>
+		<property name="nick" type="java.lang.String">
+			<column name="NICK" />
+		</property>
+		<property name="realName" type="java.lang.String">
+			<column name="REALNAME" />
+		</property>
+		<property name="tel" type="java.lang.String">
+			<column name="TEL" />
+		</property>
+		<property name="address" type="java.lang.String">
+			<column name="ADDRESS" />
+		</property>
+		<property name="email" type="java.lang.String">
+			<column name="EMAIL" />
+		</property>
+		<property name="gender" type="boolean">
+			<column name="GENDER" />
+		</property>
+		<property name="selfIntro" type="java.lang.String">
+			<column name="SELFINTRO" />
+		</property>
+		<one-to-one name="user" class="com.vtars.cdut.bean.User"></one-to-one>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-10-25 22:11:36 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class name="com.vtars.cdut.bean.User" table="MY_USER">
+		<id name="username" type="java.lang.String">
+			<column name="USERNAME" />
+			<generator class="assigned" /><!--assigned 用户自定义id -->
+		</id>
+		<property name="password" type="java.lang.String">
+			<column name="PASSWORD" />
+		</property>
+		<property name="wxid" type="java.lang.String">
+			<column name="WXID" />
+		</property>
+		<property name="activestate" type="boolean">
+			<column name="ACTIVESTATE" />
+		</property>
+		<one-to-one name="userdetail" class="com.vtars.cdut.bean.UserDetail" ></one-to-one>
+	</class>
+</hibernate-mapping>
