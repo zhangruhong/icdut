@@ -1,4 +1,4 @@
-package com.vtars.cdut.bean;
+package com.vtars.cdut.aao.bean;
 
 import java.io.Serializable;
 

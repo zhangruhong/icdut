@@ -1,4 +1,4 @@
-package com.vtars.cdut.test;
+package com.vtars.cdut.aao.test;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -6,8 +6,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.junit.Test;
 
-import com.vtars.cdut.bean.User;
-import com.vtars.cdut.bean.UserDetail;
+import com.vtars.cdut.aao.bean.User;
+import com.vtars.cdut.aao.bean.UserDetail;
 
 public class TestBean {
 

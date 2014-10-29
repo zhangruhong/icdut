@@ -18,9 +18,7 @@
 		<property name="hibernate.c3p0.max_statements">100</property>
 		<property name="hibernate.c3p0.idle_test_period">5</property>
 
-		<!-- <mapping class="com.vtars.cdut.bean.User" package="com.vtars.cdut.bean"/> 
-			<mapping class="com.vtars.cdut.bean.UserDetail" package="com.vtars.cdut.bean"/> -->
-		<mapping resource="com/vtars/cdut/bean/User.hbm.xml" />
-		<mapping resource="com/vtars/cdut/bean/UserDetail.hbm.xml" />
+		<mapping resource="com/vtars/cdut/aao/bean/User.hbm.xml" />
+		<mapping resource="com/vtars/cdut/aao/bean/UserDetail.hbm.xml"/>
 	</session-factory>
 </hibernate-configuration>

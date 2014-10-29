@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 2014-10-25 22:11:36 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-	<class name="com.vtars.cdut.bean.User" table="MY_USER">
+	<class name="com.vtars.cdut.aao.bean.User" table="MY_USER">
 		<id name="username" type="java.lang.String">
 			<column name="USERNAME" />
 			<generator class="assigned" /><!--assigned 用户自定义id -->
@@ -17,6 +17,6 @@
 		<property name="activestate" type="boolean">
 			<column name="ACTIVESTATE" />
 		</property>
-		<one-to-one name="userdetail" class="com.vtars.cdut.bean.UserDetail" ></one-to-one>
+		<one-to-one name="userdetail" class="com.vtars.cdut.aao.bean.UserDetail" ></one-to-one>
 	</class>
 </hibernate-mapping>
