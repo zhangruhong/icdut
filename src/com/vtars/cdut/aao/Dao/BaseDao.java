@@ -1,18 +1,19 @@
 package com.vtars.cdut.aao.Dao;
 
-import java.awt.SystemColor;
 import java.lang.reflect.ParameterizedType;
+
 import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.aspectj.apache.bcel.generic.NEW;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.vtars.cdut.aao.model.Pager;
 import com.vtars.cdut.aao.model.SystemContext;
+
 
 public class BaseDao<T> extends HibernateDaoSupport implements IBaseDao<T> {
 	@Resource(name = "sessionFactory")
@@ -93,7 +94,7 @@ public class BaseDao<T> extends HibernateDaoSupport implements IBaseDao<T> {
 		}
 		// 设置查询条件
 		Query query = setParamterQuery(hql, args);
-		// 将配置信息中的分页数据载入
+		// 将配置信息中的分页（起始页和页面大小）数据载入
 		query.setFirstResult(pageOffset).setMaxResults(pageSize);
 		String chql = getCountHql(hql);
 		Query cq = setParamterQuery(chql, args);
@@ -101,7 +102,9 @@ public class BaseDao<T> extends HibernateDaoSupport implements IBaseDao<T> {
 		pager.setPageOffset(pageOffset);
 		pager.setPageSize(pageSize);
 		List<T> datas = query.list();
+		// 将数据放到pager中
 		pager.setDatas(datas);
+		// 获取总条数
 		long totalRecord = (Long) cq.uniqueResult();
 		pager.setTotalRecord(totalRecord);
 		return pager;
@@ -148,6 +151,7 @@ public class BaseDao<T> extends HibernateDaoSupport implements IBaseDao<T> {
 		Query query = setParamterQuery(hql, args);
 		query.executeUpdate();
 	}
+
 	@Override
 	public void executeByHql(String hql, Object obj) {
 		this.excuteByHql(hql, new Object[] { obj });

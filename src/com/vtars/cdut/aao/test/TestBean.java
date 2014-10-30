@@ -32,7 +32,7 @@ public class TestBean {
 
 			User user = new User();
 			user.setWxid("1asadasd");
-			user.setUsername("1201113030215");
+			user.setUsername("21201113030215");
 			user.setPassword("1sdf");
 			user.setActivestate(true);
 			userdetail.setUser(user);

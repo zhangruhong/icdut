@@ -14,9 +14,9 @@
 
 	<context:annotation-config />
 	<!-- 自动加载SERVICE DAO ACTION -->
-	<context:component-scan base-package="cn.com.company.dao.*" />
-	<context:component-scan base-package="cn.com.company.service.*" />
-	<context:component-scan base-package="cn.com.company.action" />
+	<context:component-scan base-package="com.vtars.cdut.aao.Dao.*" />
+	<!-- <context:component-scan base-package="cn.com.company.service.*" /> 
+		<context:component-scan base-package="cn.com.company.action" /> -->
 
 	<!-- 加载properties配置文件 -->
 	<bean id="propertyConfigurer"
@@ -46,7 +46,7 @@
 		<property name="password" value="${slave.jdbc.password}" />
 	</bean>
 
-	<bean id="dataSource" class="com.company.datasource.DynamicDataSource">
+	<bean id="dataSource" class="com.vtars.cdut.aao.DBUtil.datasource.DynamicDataSource">
 		<property name="targetDataSources">
 			<map key-type="java.lang.String">
 				<entry key="slave" value-ref="slaveDataSource" />
@@ -56,20 +56,27 @@
 	</bean>
 
 	<!-- 配置sessionFactory -->
+	<!-- <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean"> -->
 	<bean id="sessionFactory"
-		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
-		<property name="packagesToScan" value="cn.com.company.entity" />
+		<property name="mappingDirectoryLocations">
+			<list>
+				<value>classpath:/com/vtars/cdut/aao/model</value>
+			</list>
+		</property>
 		<property name="hibernateProperties">
 			<props>
-
-				<!-- <prop>//***hibernate一些参数这里不写了</prop> -->
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+				<prop key="hibernate.show_sql">false</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.format_sql">false</prop>
 			</props>
 		</property>
 	</bean>
 
 	<!-- 切换数据源 -->
-	<bean id="dataSourceAdvice" class="com.company.aop.DataSourceAdvice" />
+	<bean id="dataSourceAdvice" class="com.vtars.cdut.aao.DBUtil.datasource.DataSourceAdvice" />
 	<aop:config>
 		<aop:advisor pointcut="execution(* cn.com.company.service..*Service.*(..))"
 			advice-ref="dataSourceAdvice" />

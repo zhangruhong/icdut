@@ -4,5 +4,4 @@ import com.vtars.cdut.aao.Dao.IBaseDao;
 import com.vtars.cdut.aao.model.User;
 
 public interface IUserDao extends IBaseDao<User> {
-
 }
