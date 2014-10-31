@@ -8,4 +8,9 @@ import com.vtars.cdut.aao.model.User;
 
 @Repository("userDao")
 public class UserDao extends BaseDao<User> implements IUserDao {
+
+	@Override
+	public User QueryUserbyid(String id) {
+		return this.getHibernateTemplate().get(User.class, id);
+	}
 }

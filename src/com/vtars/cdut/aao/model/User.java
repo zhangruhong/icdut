@@ -54,4 +54,12 @@ public class User implements Serializable {
 	public void setUserdetail(UserDetail userdetail) {
 		this.userdetail = userdetail;
 	}
+
+	@Override
+	public String toString() {
+		return "User [username=" + username + ", password=" + password
+				+ ", wxid=" + wxid + ", activestate=" + activestate
+				+ ", userdetail=" + userdetail + "]";
+	}
+	
 }

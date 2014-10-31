@@ -9,9 +9,9 @@ public interface IBaseDao<T> {
 
 	public void update(T t);
 
-	public void delete(int id);
+	public void delete(String id);
 
-	public T load(int id);
+	public T load(String id);
 
 	public List<T> list(String hql, Object[] args);
 
@@ -27,11 +27,11 @@ public interface IBaseDao<T> {
 	 * @return
 	 */
 
-	public Pager<T> find(String hql, Object[] args);
-
-	public Pager<T> find(String hql, Object obj);
-
-	public Pager<T> find(String hql);
+//	public Pager<T> find(String hql, Object[] args);
+//
+//	public Pager<T> find(String hql, Object obj);
+//
+//	public Pager<T> find(String hql);
 
 	/**
 	 * 通过hql获取一个对象

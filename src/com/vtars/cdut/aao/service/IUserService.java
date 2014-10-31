@@ -25,7 +25,7 @@ public interface IUserService {
 	 * 
 	 * @param id
 	 */
-	public void delete(int id);
+	public void delete(String id);
 
 	/**
 	 * 加载一个用户（查询一个用户）
@@ -33,7 +33,7 @@ public interface IUserService {
 	 * @param id
 	 * @return
 	 */
-	public User load(int id);
+	public User load(String id);
 
 	/**
 	 * 列出所有的用户

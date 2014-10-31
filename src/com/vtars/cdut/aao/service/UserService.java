@@ -30,7 +30,7 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public void delete(int id) {
+	public void delete(String id) {
 		// 1.级联删除用户关联的userdetail
 		// String hql = "delete my_userdetail as ud where as.userdetailid=id"
 		System.out.println("暂不考虑删除的事（还没学到怎么级联删除）");
@@ -38,7 +38,7 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public User load(int id) {
+	public User load(String  id) {
 		userDao.load(id);
 		return userDao.load(id);
 	}

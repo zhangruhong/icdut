@@ -21,71 +21,97 @@ public class UserDetail implements Serializable {
 	private boolean gender; // 性别
 	private String selfIntro;// 备注或简介
 	private User user;
-	
+
 	public UserDetail() {
 		super();
 	}
+
 	public String getUserDetailid() {
 		return userDetailid;
 	}
+
 	public void setUserDetailid(String userDetailid) {
 		this.userDetailid = userDetailid;
 	}
+
 	public String getIdCardNo() {
 		return idCardNo;
 	}
+
 	public void setIdCardNo(String idCardNo) {
 		this.idCardNo = idCardNo;
 	}
+
 	public String getNick() {
 		return nick;
 	}
+
 	public void setNick(String nick) {
 		this.nick = nick;
 	}
+
 	public String getRealName() {
 		return realName;
 	}
+
 	public void setRealName(String realName) {
 		this.realName = realName;
 	}
+
 	public String getTel() {
 		return tel;
 	}
+
 	public void setTel(String tel) {
 		this.tel = tel;
 	}
+
 	public String getAddress() {
 		return address;
 	}
+
 	public void setAddress(String address) {
 		this.address = address;
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	public boolean isGender() {
 		return gender;
 	}
+
 	public void setGender(boolean gender) {
 		this.gender = gender;
 	}
+
 	public String getSelfIntro() {
 		return selfIntro;
 	}
+
 	public void setSelfIntro(String selfIntro) {
 		this.selfIntro = selfIntro;
 	}
+
 	public User getUser() {
 		return user;
 	}
+
 	public void setUser(User user) {
 		this.user = user;
 	}
 
-	
-	
+	@Override
+	public String toString() {
+		return "UserDetail [userDetailid=" + userDetailid + ", idCardNo="
+				+ idCardNo + ", nick=" + nick + ", realName=" + realName
+				+ ", tel=" + tel + ", address=" + address + ", email=" + email
+				+ ", gender=" + gender + ", selfIntro=" + selfIntro + "]";
+	}
+
 }

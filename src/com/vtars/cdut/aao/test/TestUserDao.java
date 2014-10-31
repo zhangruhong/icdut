@@ -28,7 +28,7 @@ public class TestUserDao {
 	public void addtestadd() {
 
 		User user = new User();
-		user.setUsername("2011130302141");
+		user.setUsername("201113");
 		user.setPassword("asgdfos");
 		user.setWxid("jaghsdfjkh");
 		user.setActivestate(true);
@@ -78,5 +78,43 @@ public class TestUserDao {
 				.getUserdetail();
 		System.out.println("------------------testfindByUserdetail");
 		System.out.println(ud.getAddress() + "--------" + ud.getUserDetailid());
+	}
+
+	@Test
+	@Transactional
+	// 注意删除UserDao的@Transactional
+	public void testfindUserbyid() {
+		User user = userDao.QueryUserbyid("201113030214");
+		System.out.println("testfindUserbyid:" + user);
+	}
+
+	@Test
+	// 添加了事务后不能更新
+	public void updateUserinfo() {
+		User user = userDao.QueryUserbyid("201113030214");
+		System.out.println("updateUserinfo1:" + user);
+		user.setPassword("123123123");
+		user.setActivestate(false);
+		userDao.update(user);
+		System.out.println("updateUserinfo2:" + user);
+	}
+
+	@Test
+	public void updateUserDetailinfo() {
+		User user = userDao.QueryUserbyid("201113030214");
+		System.out.println("updateUserinfo1:" + user);
+		user.getUserdetail().setAddress("addresssdf");
+		user.setPassword("123sdf3sd");
+		user.getUserdetail().setRealName("zhaSduh1");
+		user.setActivestate(true);
+		userDao.update(user);
+		userdetaiDao.update(user.getUserdetail());
+		System.out.println("updateUserinfo2:" + user);
+	}
+	
+	@Test
+	public void deleteUserAndUserDetail(){
+		userDao.delete("2011130302141");
+		userdetaiDao.delete("2011130302141");
 	}
 }

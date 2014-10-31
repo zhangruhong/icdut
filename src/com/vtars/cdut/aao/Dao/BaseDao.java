@@ -44,13 +44,13 @@ public class BaseDao<T> extends HibernateDaoSupport implements IBaseDao<T> {
 	}
 
 	@Override
-	public void delete(int id) {
+	public void delete(String id) {
 		T t = this.load(id);
 		this.getHibernateTemplate().delete(t);
 	}
 
 	@Override
-	public T load(int id) {
+	public T load(String id) {
 		return this.getHibernateTemplate().load(getClz(), id);
 	}
 
@@ -80,56 +80,56 @@ public class BaseDao<T> extends HibernateDaoSupport implements IBaseDao<T> {
 		return this.list(hql, null);
 	}
 
-	@Override
-	public Pager<T> find(String hql, Object[] args) {
-		// 应该是加载配置文件的-单页容量
-		int pageSize = SystemContext.getPageSize();
-		// 应该是加载配置文件的-起始页
-		int pageOffset = SystemContext.getPageOffset();
-		if (pageSize <= 0) {
-			pageSize = 0;
-		}
-		if (pageOffset < 0) {
-			pageOffset = 0;
-		}
-		// 设置查询条件
-		Query query = setParamterQuery(hql, args);
-		// 将配置信息中的分页（起始页和页面大小）数据载入
-		query.setFirstResult(pageOffset).setMaxResults(pageSize);
-		String chql = getCountHql(hql);
-		Query cq = setParamterQuery(chql, args);
-		Pager<T> pager = new Pager<T>();
-		pager.setPageOffset(pageOffset);
-		pager.setPageSize(pageSize);
-		List<T> datas = query.list();
-		// 将数据放到pager中
-		pager.setDatas(datas);
-		// 获取总条数
-		long totalRecord = (Long) cq.uniqueResult();
-		pager.setTotalRecord(totalRecord);
-		return pager;
-	}
-
-	private String getCountHql(String hql) {
-		String s = hql.substring(0, hql.indexOf("from"));
-		if (s == null || s.equals("")) {
-			hql = "select count(*) " + hql;
-		}
-		hql = hql.replace(s, "select count(*) ");
-		hql = hql.replace("fetch", "");
-		return hql;
-	}
-
-	@Override
-	public Pager<T> find(String hql, Object obj) {
-		return this.find(hql, new Object[] { obj });
-	}
-
-	@Override
-	public Pager<T> find(String hql) {
-		return this.find(hql, null);
-	}
-
+	// @Override
+	// public Pager<T> find(String hql, Object[] args) {
+	// // 应该是加载配置文件的-单页容量
+	// int pageSize = SystemContext.getPageSize();
+	// // 应该是加载配置文件的-起始页
+	// int pageOffset = SystemContext.getPageOffset();
+	// if (pageSize <= 0) {
+	// pageSize = 0;
+	// }
+	// if (pageOffset < 0) {
+	// pageOffset = 0;
+	// }
+	// // 设置查询条件
+	// Query query = setParamterQuery(hql, args);
+	// // 将配置信息中的分页（起始页和页面大小）数据载入
+	// query.setFirstResult(pageOffset).setMaxResults(pageSize);
+	// String chql = getCountHql(hql);
+	// Query cq = setParamterQuery(chql, args);
+	// Pager<T> pager = new Pager<T>();
+	// pager.setPageOffset(pageOffset);
+	// pager.setPageSize(pageSize);
+	// List<T> datas = query.list();
+	// // 将数据放到pager中
+	// pager.setDatas(datas);
+	// // 获取总条数
+	// long totalRecord = (Long) cq.uniqueResult();
+	// pager.setTotalRecord(totalRecord);
+	// return pager;
+	// }
+	//
+	// private String getCountHql(String hql) {
+	// String s = hql.substring(0, hql.indexOf("from"));
+	// if (s == null || s.equals("")) {
+	// hql = "select count(*) " + hql;
+	// }
+	// hql = hql.replace(s, "select count(*) ");
+	// hql = hql.replace("fetch", "");
+	// return hql;
+	// }
+	//
+	// @Override
+	// public Pager<T> find(String hql, Object obj) {
+	// return this.find(hql, new Object[] { obj });
+	// }
+	//
+	// @Override
+	// public Pager<T> find(String hql) {
+	// return this.find(hql, null);
+	// }
+	//
 	@Override
 	public Object queryByHql(String hql, Object[] args) {
 		Query query = setParamterQuery(hql, args);
