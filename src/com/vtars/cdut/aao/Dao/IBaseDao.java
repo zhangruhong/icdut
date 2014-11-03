@@ -2,8 +2,6 @@ package com.vtars.cdut.aao.Dao;
 
 import java.util.List;
 
-import com.vtars.cdut.aao.model.Pager;
-
 public interface IBaseDao<T> {
 	public void add(T t);
 

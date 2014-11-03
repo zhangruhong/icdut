@@ -12,8 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.vtars.cdut.aao.Dao.UserDao.IUserDao;
 import com.vtars.cdut.aao.Dao.UserDetailDao.IUserDetailDao;
-import com.vtars.cdut.aao.model.User;
-import com.vtars.cdut.aao.model.UserDetail;
+import com.vtars.cdut.aao.Model.User;
+import com.vtars.cdut.aao.Model.UserDetail;
+import com.vtars.cdut.aao.Service.IUserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("/applicationContext.xml")
@@ -23,7 +24,7 @@ public class TestUserDao {
 	IUserDao userDao;
 	@Resource
 	IUserDetailDao userdetaiDao;
-
+	
 	@Test
 	public void addtestadd() {
 
@@ -111,9 +112,9 @@ public class TestUserDao {
 		userdetaiDao.update(user.getUserdetail());
 		System.out.println("updateUserinfo2:" + user);
 	}
-	
+
 	@Test
-	public void deleteUserAndUserDetail(){
+	public void deleteUserAndUserDetail() {
 		userDao.delete("2011130302141");
 		userdetaiDao.delete("2011130302141");
 	}

@@ -1,7 +1,6 @@
 package com.vtars.cdut.aao.Dao;
 
 import java.lang.reflect.ParameterizedType;
-
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -9,10 +8,6 @@ import javax.annotation.Resource;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
-import org.springframework.transaction.annotation.Transactional;
-
-import com.vtars.cdut.aao.model.Pager;
-import com.vtars.cdut.aao.model.SystemContext;
 
 
 public class BaseDao<T> extends HibernateDaoSupport implements IBaseDao<T> {

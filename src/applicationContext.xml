@@ -15,8 +15,8 @@
 	<context:annotation-config />
 	<!-- 自动加载SERVICE DAO ACTION -->
 	<context:component-scan base-package="com.vtars.cdut.aao.Dao.*" />
-	<!-- <context:component-scan base-package="cn.com.company.service.*" /> 
-		<context:component-scan base-package="cn.com.company.action" /> -->
+	<context:component-scan base-package="com.vtars.cdut.aao.Service.*" />
+	<context:component-scan base-package="com.vtars.cdut.aao.Action.*" />
 
 	<!-- 加载properties配置文件 -->
 	<bean id="propertyConfigurer"
@@ -56,13 +56,12 @@
 	</bean>
 
 	<!-- 配置sessionFactory -->
-	<!-- <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean"> -->
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
 		<property name="mappingDirectoryLocations">
 			<list>
-				<value>classpath:/com/vtars/cdut/aao/model</value>
+				<value>classpath:/com/vtars/cdut/aao/Model</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -78,7 +77,7 @@
 	<!-- 切换数据源 -->
 	<bean id="dataSourceAdvice" class="com.vtars.cdut.aao.DBUtil.datasource.DataSourceAdvice" />
 	<aop:config>
-		<aop:advisor pointcut="execution(* cn.com.company.service..*Service.*(..))"
+		<aop:advisor pointcut="execution(* com.vtars.cdut.aao.Service..*Service.*(..))"
 			advice-ref="dataSourceAdvice" />
 	</aop:config>
 
@@ -109,9 +108,10 @@
 	</tx:advice>
 	<!--那些类的哪些方法参与事务 -->
 	<aop:config>
-		<aop:advisor pointcut="execution(* cn.com.company.service..*Service.*(..))"
+		<aop:advisor pointcut="execution(* com.vtars.cdut.aao.Service..*Service.*(..))"
 			advice-ref="txAdvice" />
-		<aop:advisor pointcut="execution(* cn.com.company.service..*ServiceImpl.*(..))"
+		<aop:advisor
+			pointcut="execution(* com.vtars.cdut.aao.Service..*ServiceImpl.*(..))"
 			advice-ref="txAdvice" />
 	</aop:config>
 

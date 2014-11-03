@@ -1,10 +1,14 @@
-package com.vtars.cdut.aao.service;
+package com.vtars.cdut.aao.Service;
 
 import java.util.List;
 
-import com.vtars.cdut.aao.model.Pager;
-import com.vtars.cdut.aao.model.User;
+import com.vtars.cdut.aao.Model.User;
 
+/**
+ * 此类将UserDetail一起操作了
+ * @author Davisz
+ *
+ */
 public interface IUserService {
 	/**
 	 * 存一个用户
@@ -48,6 +52,6 @@ public interface IUserService {
 	 * @param id
 	 * @return
 	 */
-	public User findUserById(int id);
+	public User findUserById(String id);
 
 }

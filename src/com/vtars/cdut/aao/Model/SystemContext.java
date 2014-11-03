@@ -1,4 +1,4 @@
-package com.vtars.cdut.aao.model;
+package com.vtars.cdut.aao.Model;
 
 public class SystemContext {
 	private static ThreadLocal<Integer> pageOffset = new ThreadLocal<Integer>();

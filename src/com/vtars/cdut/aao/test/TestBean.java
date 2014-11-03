@@ -6,8 +6,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.junit.Test;
 
-import com.vtars.cdut.aao.model.User;
-import com.vtars.cdut.aao.model.UserDetail;
+import com.vtars.cdut.aao.Model.User;
+import com.vtars.cdut.aao.Model.UserDetail;
 
 public class TestBean {
 
