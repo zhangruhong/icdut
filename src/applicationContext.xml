@@ -28,6 +28,12 @@
 		</property>
 	</bean>
 
+	<bean id="myService" class="com.vtars.cdut.aao.Action.MyServiceImpl" />
+	<bean id="loginAction" class="com.vtars.cdut.aao.Action.LoginAction"
+		scope="prototype">
+		<property name="ms" ref="myService" />
+	</bean>
+
 	<bean id="parentDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
 		<!-- //***c3p0配置 -->
 	</bean>
@@ -117,4 +123,5 @@
 
 
 </beans>
+
 
