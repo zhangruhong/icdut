@@ -22,8 +22,8 @@
 		</global-exception-mappings>
 
 		<action name="loginpage" class="com.vtars.cdut.aao.Action.LoginAction">
-			<result name="SUCCESS">/WEB-INF/success.jsp</result>
-			<result name="ERROR">/WEB-INF/error.jsp</result>
+			<result name="SUCCESS">/success.jsp</result>
+			<result name="ERROR">/error.jsp</result>
 		</action>
 	</package>
 	<!-- Add packages here -->

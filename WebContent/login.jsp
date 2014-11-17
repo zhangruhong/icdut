@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<s:form name="login" class="loginpage">
+	<s:form name="login" action="loginpage">
 		<s:textfield name="username" value="" label="账号" />
 		<s:textfield name="password" value="" label="密码" />
 		<s:submit value="登录" />
