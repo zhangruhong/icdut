@@ -6,6 +6,7 @@ import com.vtars.cdut.aao.Model.User;
 
 /**
  * 此类将UserDetail一起操作了
+ * 
  * @author Davisz
  *
  */
@@ -45,6 +46,14 @@ public interface IUserService {
 	 * @return
 	 */
 	public List<User> findAllUsers();
+
+	/**
+	 * 通过hql查用户
+	 * 
+	 * @param hql
+	 * @return
+	 */
+	public List<User> findUsersByHql(String hql,Object[] args);
 
 	/**
 	 * 通过学号查用户

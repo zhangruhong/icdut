@@ -1,13 +1,32 @@
 package com.vtars.cdut.aao.Action;
 
-import com.opensymphony.xwork2.Action;
+import java.util.List;
 
-public class LoginAction implements Action {
+import org.springframework.beans.factory.annotation.Autowired;
 
+import com.opensymphony.xwork2.ActionSupport;
+import com.vtars.cdut.aao.Model.User;
+import com.vtars.cdut.aao.Service.IUserService;
+
+public class LoginAction extends ActionSupport {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String username;
 	private String password;
-	private String tip;
-	private MyService ms;
+
+	private IUserService userService;
+
+	public IUserService getUserService() {
+		return userService;
+	}
+
+	@Autowired
+	public void setUserService(IUserService userService) {
+		this.userService = userService;
+	}
 
 	public String getUsername() {
 		return username;
@@ -25,26 +44,13 @@ public class LoginAction implements Action {
 		this.password = password;
 	}
 
-	public String getTip() {
-		return tip;
-	}
-
-	public void setTip(String tip) {
-		this.tip = tip;
-	}
-
-	public MyService getMs() {
-		return ms;
-	}
-
-	public void setMs(MyService ms) {
-		this.ms = ms;
-	}
-
-	@Override
-	public String execute() throws Exception {
-		if (ms.valid(getUsername(), getPassword())) {
-			setTip("¹þ¹þ£¬³É¹¦");
+	public String execute() {
+		System.out.println("users_size()11");
+		List<User> users = userService.findUsersByHql(
+				"from User u where u.username=? and u.password=?",
+				new Object[] { username, password });
+		System.out.println("users_size()" + users.size());
+		if (users.size() == 1) {
 			return SUCCESS;
 		} else {
 			return ERROR;

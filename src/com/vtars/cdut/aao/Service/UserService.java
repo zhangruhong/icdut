@@ -71,4 +71,11 @@ public class UserService implements IUserService {
 		return userDao.QueryUserbyid(id);
 	}
 
+	@Override
+	public List<User> findUsersByHql(String hql, Object[] args) {
+		// 此处需要返回一个list 需要查看下
+		List<User> users = userDao.list(hql, args);
+		return users;
+	}
+
 }
