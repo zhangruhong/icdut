@@ -10,22 +10,25 @@
 
 	<package name="default" namespace="/" extends="struts-default">
 
-		<default-action-ref name="index" />
+		<default-action-ref name="defaultAction" />
 
-		<!-- <global-results>
+		<global-results>
 			<result name="error">/error.jsp</result>
-		</global-results> 
-
+		</global-results>
 		<global-exception-mappings>
 			<exception-mapping exception="java.lang.Exception"
 				result="error" />
-		</global-exception-mappings>-->
+		</global-exception-mappings>
 
+		<action name="defaultAction">
+			<result name="success">/WEB-INF/index/index.jsp</result>
+		</action>
+		
 		<action name="loginpage" class="com.vtars.cdut.aao.Action.LoginAction">
 			<result name="success">/success.jsp</result>
 			<result name="error">/error1.jsp</result>
 		</action>
-		
+
 	</package>
 	<!-- Add packages here -->
 

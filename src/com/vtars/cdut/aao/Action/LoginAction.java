@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Scope;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.vtars.cdut.aao.Model.User;
@@ -24,6 +25,7 @@ public class LoginAction extends ActionSupport {
 		return userService;
 	}
 
+	@Scope(value = "prototype")
 	@Autowired
 	@Qualifier("userService")
 	public void setUserService(IUserService userService) {
