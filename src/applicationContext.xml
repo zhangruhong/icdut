@@ -30,11 +30,11 @@
 
 
 
-	<bean id="userService" class="com.vtars.cdut.aao.Service.UserService"></bean>
+	<!-- <bean id="userService" class="com.vtars.cdut.aao.Service.UserService"></bean>
 	<bean id="loginAction" class="com.vtars.cdut.aao.Action.LoginAction"
 		scope="prototype">
 		<property name="userService" ref="userService" />
-	</bean>
+	</bean> -->
 
 
 

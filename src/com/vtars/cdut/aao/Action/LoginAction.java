@@ -3,6 +3,7 @@ package com.vtars.cdut.aao.Action;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.vtars.cdut.aao.Model.User;
@@ -24,6 +25,7 @@ public class LoginAction extends ActionSupport {
 	}
 
 	@Autowired
+	@Qualifier("userService")
 	public void setUserService(IUserService userService) {
 		this.userService = userService;
 	}
