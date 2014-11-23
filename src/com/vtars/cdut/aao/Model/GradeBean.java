@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class GradeBean implements Serializable, Comparable<Object> {
 	private static final long serialVersionUID = -859905911042449857L;
 	// 用户对象 学期 教学编号 课程名称 成绩 考查成绩 成绩状态 学时 学分 备注 更新时间
+	private long gradeid;
 	private User user;// 用户对象
 	private String term;// 学期
 	private String teachNo;// 教学编号
@@ -16,6 +17,18 @@ public class GradeBean implements Serializable, Comparable<Object> {
 	private String credit;// 学分
 	private String remark;// 备注
 	private String updateTime;// 更新时间
+
+	public GradeBean() {
+		super();
+	}
+
+	public long getGradeid() {
+		return gradeid;
+	}
+
+	public void setGradeid(long gradeid) {
+		this.gradeid = gradeid;
+	}
 
 	public User getUser() {
 		return user;
