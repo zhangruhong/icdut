@@ -106,6 +106,87 @@ public class UserDetail implements Serializable {
 		this.user = user;
 	}
 
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((address == null) ? 0 : address.hashCode());
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + (gender ? 1231 : 1237);
+		result = prime * result
+				+ ((idCardNo == null) ? 0 : idCardNo.hashCode());
+		result = prime * result + ((nick == null) ? 0 : nick.hashCode());
+		result = prime * result
+				+ ((realName == null) ? 0 : realName.hashCode());
+		result = prime * result
+				+ ((selfIntro == null) ? 0 : selfIntro.hashCode());
+		result = prime * result + ((tel == null) ? 0 : tel.hashCode());
+		result = prime * result + ((user == null) ? 0 : user.hashCode());
+		result = prime * result
+				+ ((userDetailid == null) ? 0 : userDetailid.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		UserDetail other = (UserDetail) obj;
+		if (address == null) {
+			if (other.address != null)
+				return false;
+		} else if (!address.equals(other.address))
+			return false;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
+		if (gender != other.gender)
+			return false;
+		if (idCardNo == null) {
+			if (other.idCardNo != null)
+				return false;
+		} else if (!idCardNo.equals(other.idCardNo))
+			return false;
+		if (nick == null) {
+			if (other.nick != null)
+				return false;
+		} else if (!nick.equals(other.nick))
+			return false;
+		if (realName == null) {
+			if (other.realName != null)
+				return false;
+		} else if (!realName.equals(other.realName))
+			return false;
+		if (selfIntro == null) {
+			if (other.selfIntro != null)
+				return false;
+		} else if (!selfIntro.equals(other.selfIntro))
+			return false;
+		if (tel == null) {
+			if (other.tel != null)
+				return false;
+		} else if (!tel.equals(other.tel))
+			return false;
+		if (user == null) {
+			if (other.user != null)
+				return false;
+		} else if (!user.equals(other.user))
+			return false;
+		if (userDetailid == null) {
+			if (other.userDetailid != null)
+				return false;
+		} else if (!userDetailid.equals(other.userDetailid))
+			return false;
+		return true;
+	}
+
 	@Override
 	public String toString() {
 		return "UserDetail [userDetailid=" + userDetailid + ", idCardNo="

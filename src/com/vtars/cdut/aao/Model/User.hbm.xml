@@ -17,6 +17,13 @@
 		<property name="activestate" type="boolean">
 			<column name="ACTIVESTATE" />
 		</property>
-		<one-to-one name="userdetail" class="com.vtars.cdut.aao.Model.UserDetail" ></one-to-one>
+		<!--cascade="all" all表示无论对主表的增删改查都会级联操作到从表  -->
+		<one-to-one name="userdetail" cascade="all" class="com.vtars.cdut.aao.Model.UserDetail" />
+		<set name="grades" inverse="true" cascade="all"><!-- inverse="true"指定不控制关联关系 -->
+			<!--指定关联的外键列 -->
+			<key column="USERNAME" />
+			<!--用以映射到关联类的属性 -->
+			<one-to-many class="com.vtars.cdut.aao.Model.GradeBean" />
+		</set>
 	</class>
 </hibernate-mapping>

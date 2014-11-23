@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.vtars.cdut.aao.Model.GradeBean" table="MY_GRADE">
+		<id name="gradeid" type="java.lang.Long">
+			<column name="grade_id" />
+			<generator class="identity" />
+		</id>
+		<property name="term" type="java.lang.String">
+			<column name="TERM" />
+		</property>
+		<property name="teachNo" type="java.lang.String">
+			<column name="TEACHNO" />
+		</property>
+		<property name="courseName" type="java.lang.String">
+			<column name="COURSENAME" />
+		</property>
+		<property name="grade" type="java.lang.String">
+			<column name="GRADE" />
+		</property>
+		<property name="gradeRank" type="java.lang.String">
+			<column name="GRADERANK" />
+		</property>
+		<property name="gradeState" type="java.lang.String">
+			<column name="GRADESTATE" />
+		</property>
+		<property name="studyTimes" type="java.lang.String">
+			<column name="STUDYTIMES" />
+		</property>
+		<property name="credit" type="java.lang.String">
+			<column name="CREDIT" />
+		</property>
+		<property name="remark" type="java.lang.String">
+			<column name="REMARK" />
+		</property>
+		<property name="updateTime" type="java.lang.String">
+			<column name="UPDATETIME" />
+		</property>
+		<many-to-one name="user" class="com.vtars.cdut.aao.Model.User"
+			not-null="true">
+			<column name="USERNAME" />
+		</many-to-one>
+	</class>
+</hibernate-mapping>
