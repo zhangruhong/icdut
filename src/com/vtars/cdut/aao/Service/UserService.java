@@ -68,7 +68,7 @@ public class UserService implements IUserService {
 
 	@Override
 	public User findUserById(String id) {
-		return userDao.QueryUserbyid(id);
+		return userDao.queryUserbyid(id);
 	}
 
 	@Override

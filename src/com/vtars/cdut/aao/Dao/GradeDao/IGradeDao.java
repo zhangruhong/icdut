@@ -24,14 +24,14 @@ public interface IGradeDao {
 	 * @param studyid
 	 * @param ts
 	 */
-	void AddGrades(TreeSet<GradeBean> ts);
+	void addGrades(TreeSet<GradeBean> ts);
 
 	/**
 	 * 删除该用户的所有成绩记录
 	 * 
 	 * @param user
 	 */
-	void DeleteGrades(User user);
+	void deleteGrades(User user);
 
 	/**
 	 * 返回该学生的所有成绩记录
@@ -39,7 +39,7 @@ public interface IGradeDao {
 	 * @param u
 	 * @return
 	 */
-	ArrayList<GradeBean> ListGradesByUser(User u);
+	ArrayList<GradeBean> listGradesByUser(User u);
 
 	/**
 	 * 按条件查找
@@ -48,6 +48,6 @@ public interface IGradeDao {
 	 * @param args
 	 * @return
 	 */
-	ArrayList<GradeBean> QueryByHql(String hql, Object[] args);
+	ArrayList<GradeBean> queryByHql(String hql, Object[] args);
 
 }

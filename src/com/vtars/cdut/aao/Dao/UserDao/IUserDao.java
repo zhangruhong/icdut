@@ -9,6 +9,6 @@ public interface IUserDao extends IBaseDao<User> {
 	 * 
 	 * @return
 	 */
-	public User QueryUserbyid(String  id);
+	public User queryUserbyid(String  id);
 	// 增加其他条件查找比如按地区查找、按不精确学号查找、邮箱、手机、性别、身份证查找的通用方法
 }

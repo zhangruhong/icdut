@@ -24,7 +24,7 @@ public class GradeDao extends HibernateDaoSupport implements IGradeDao {
 	}
 
 	@Override
-	public void AddGrades(TreeSet<GradeBean> ts) {
+	public void addGrades(TreeSet<GradeBean> ts) {
 		int i = 0;// 计数器
 		if (null == ts || ts.isEmpty()) {
 			return;
@@ -43,24 +43,22 @@ public class GradeDao extends HibernateDaoSupport implements IGradeDao {
 	}
 
 	@Override
-	public void DeleteGrades(User user) {
+	public void deleteGrades(User user) {
 		int i = 0;// 计数器
 		if (null == user) {
 			return;
 		}
-		List<GradeBean> gds = ListGradesByUser(user);
+		List<GradeBean> gds = listGradesByUser(user);
+
+		// TODO 想要批量插入提高性能 使用HibernateCallback思路吧
 		for (GradeBean gd : gds) {
 			this.getHibernateTemplate().delete(gd);
-			if (i % 20 == 0) {
-				this.getHibernateTemplate().flush();
-				this.getHibernateTemplate().clear();
-			}
 		}
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public ArrayList<GradeBean> ListGradesByUser(User u) {
+	public ArrayList<GradeBean> listGradesByUser(User u) {
 		if (null == u) {
 			return null;
 		}
@@ -69,7 +67,7 @@ public class GradeDao extends HibernateDaoSupport implements IGradeDao {
 	}
 
 	@Override
-	public ArrayList<GradeBean> QueryByHql(String hql, Object[] args) {
+	public ArrayList<GradeBean> queryByHql(String hql, Object[] args) {
 		Query query = setParamterQuery(hql, args);
 		return (ArrayList<GradeBean>) query.list();
 	}

@@ -29,7 +29,7 @@ public class TestUserDao {
 	public void addtestadd() {
 
 		User user = new User();
-		user.setUsername("201113");
+		user.setUsername("201113030214");
 		user.setPassword("asgdfos");
 		user.setWxid("jaghsdfjkh");
 		user.setActivestate(true);
@@ -85,14 +85,14 @@ public class TestUserDao {
 	@Transactional
 	// 注意删除UserDao的@Transactional
 	public void testfindUserbyid() {
-		User user = userDao.QueryUserbyid("201113030214");
+		User user = userDao.queryUserbyid("201113030214");
 		System.out.println("testfindUserbyid:" + user);
 	}
 
 	@Test
 	// 添加了事务后不能更新
 	public void updateUserinfo() {
-		User user = userDao.QueryUserbyid("201113030214");
+		User user = userDao.queryUserbyid("201113030214");
 		System.out.println("updateUserinfo1:" + user);
 		user.setPassword("123123123");
 		user.setActivestate(false);
@@ -102,7 +102,7 @@ public class TestUserDao {
 
 	@Test
 	public void updateUserDetailinfo() {
-		User user = userDao.QueryUserbyid("201113030214");
+		User user = userDao.queryUserbyid("201113030214");
 		System.out.println("updateUserinfo1:" + user);
 		user.getUserdetail().setAddress("addresssdf");
 		user.setPassword("123sdf3sd");

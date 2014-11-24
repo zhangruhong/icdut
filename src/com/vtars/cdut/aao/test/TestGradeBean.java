@@ -1,5 +1,6 @@
 package com.vtars.cdut.aao.test;
 
+import java.util.ArrayList;
 import java.util.TreeSet;
 
 import javax.annotation.Resource;
@@ -50,22 +51,36 @@ public class TestGradeBean {
 	@Test
 	public void addGrades() {
 		TreeSet<GradeBean> gbs = new TreeSet<GradeBean>();
-		for (int i = 0; i < 50; i++) {
+		for (int i = 0; i < 80; i++) {
 			GradeBean gb = new GradeBean();
-			gb.setCourseName("coursename" + i);
-			gb.setCredit("credit" + i);
-			gb.setGrade("grade" + i);
-			gb.setGradeRank("GradeRank");
-			gb.setGradeState("gradeState");
-			gb.setRemark("remark");
-			gb.setStudyTimes("studyTimes");
-			gb.setTeachNo("teachNo");
-			gb.setTerm("term");
-			gb.setUpdateTime("updateTime");
+			gb.setCourseName("214coursename" + i);
+			gb.setCredit("214credit" + i);
+			gb.setGrade("214grade" + i);
+			gb.setGradeRank("214GradeRank");
+			gb.setGradeState("214gradeState");
+			gb.setRemark("214remark");
+			gb.setStudyTimes("214studyTimes");
+			gb.setTeachNo("214teachNo");
+			gb.setTerm("214term");
+			gb.setUpdateTime("214updateTime");
 			gb.setUser(user);
 			gbs.add(gb);
 		}
-		gdao.AddGrades(gbs);
+		gdao.addGrades(gbs);
+	}
+
+	@Test
+	public void ShowGradesByUser() {
+		ArrayList<GradeBean> grades = gdao.listGradesByUser(user);
+		for (GradeBean grade : grades) {
+			System.out.println("¡ª¡ª-"+grade);
+		}
+	}
+	
+
+	@Test 
+	public void DeleteGrades() {
+		gdao.deleteGrades(user);
 	}
 
 }
