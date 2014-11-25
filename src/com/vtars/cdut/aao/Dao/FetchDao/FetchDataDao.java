@@ -16,10 +16,11 @@ import com.vtars.cdut.aao.Model.GradeBean;
 import com.vtars.cdut.aao.Utils.LogUtil;
 
 public class FetchDataDao implements IFetchDataDao {
-	private Logger logger = LogUtil.logger;
+	private static Logger logger = LogUtil.logger;
 
 	@Override
-	public TreeSet<GradeBean> fetchGradesDate(String aaosessionid, Map kvinfo) {
+	public TreeSet<GradeBean> fetchGrades(String aaosessionid,
+			Map<String, String> kvinfo) {
 		// Loginweb.getInstance("201113030214","zhangruhong3302");
 		// 这儿的SESSIONID需要根据要登录的目标网站设置的session Cookie名字而定
 
@@ -52,6 +53,7 @@ public class FetchDataDao implements IFetchDataDao {
 				gb.setRemark(tdElements.get(8).text());
 				gb.setUpdateTime(tdElements.get(9).text());
 				courseList.add(gb);
+				System.out.println("fetchGrades:"+gb);
 			}
 			// 删除最后的表头
 			courseList.remove(courseList.first());
@@ -88,7 +90,7 @@ public class FetchDataDao implements IFetchDataDao {
 	}
 
 	@Override
-	public Map<String, String> fetchNewsUrlFormAAO(String AAO_URL) {
+	public Map<String, String> fetchNewsUrls(String AAO_URL) {
 		// "http://www.aao.cdut.edu.cn/aao/aao.php?sort=389&sorid=391&from=more"
 		try {
 			LinkedHashMap<String, String> tm = new LinkedHashMap<String, String>();

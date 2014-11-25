@@ -14,9 +14,9 @@ public interface IFetchDataDao {
 	 *            教务系统的sessionid 你懂的
 	 * @param kvinfo
 	 *            变态的暗码验证
-	 * @return
+	 * @return 
 	 */
-	public TreeSet<GradeBean> fetchGradesDate(String aaosessionid, Map kvinfo);
+	public TreeSet<GradeBean> fetchGrades(String aaosessionid, Map<String, String> kvinfo);
 
 	/**
 	 * 老系统的新闻详情页 与登录无关
@@ -32,6 +32,6 @@ public interface IFetchDataDao {
 	 * @param AAO_URL
 	 * @return
 	 */
-	public Map<String, String> fetchNewsUrlFormAAO(String AAO_URL);
+	public Map<String, String> fetchNewsUrls(String AAO_URL);
 
 }

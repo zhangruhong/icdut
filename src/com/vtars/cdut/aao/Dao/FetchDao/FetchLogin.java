@@ -2,22 +2,38 @@ package com.vtars.cdut.aao.Dao.FetchDao;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.TreeMap;
 
 import org.apache.log4j.Logger;
 import org.jsoup.Connection;
-import org.jsoup.Jsoup;
 import org.jsoup.Connection.Method;
+import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 import com.vtars.cdut.aao.Utils.LogUtil;
 
 public class FetchLogin {
 	private Logger logger = LogUtil.logger;
-	public String sessionId = null;
+	private String sessionId = null;
 	// 放一个map来装可能会需要的验证信息 post过去
-	public Map kvinfo = null;
+	private Map<String, String> kvinfo = new TreeMap<String, String>();
 
-	@SuppressWarnings("unchecked")
+	public FetchLogin() {
+		super();
+	}
+
+	public String getSessionId() {
+		return sessionId;
+	}
+
+	public Map<String, String> getKvinfo() {
+		return kvinfo;
+	}
+
+	public void setKvinfo(Map<String, String> kvinfo) {
+		this.kvinfo = kvinfo;
+	}
+
 	private Connection.Response login(String uname, String upwd) {
 		Connection.Response res = null;
 		kvinfo.put("uname", uname);
@@ -34,7 +50,7 @@ public class FetchLogin {
 	}
 
 	// 判断连接 不需要获得session 看返回内容
-	public boolean IsCanLogin(String uname, String upwd) {
+	public boolean isLoginRight(String uname, String upwd) {
 		try {
 			Connection.Response response = login(uname, upwd);
 			Document doc = response.parse();
@@ -43,20 +59,17 @@ public class FetchLogin {
 				sessionId = response.cookie("PHPSESSID");
 				return true;
 			} else {
-				logger.info("登录失败时的页面标题："+doc.getElementsByTag("title").text());
+				logger.info("登录失败时的页面标题："
+						+ doc.getElementsByTag("title").text());
 				return false;
 			}
-		} catch (Exception e) {
-			logger.error("IsCanLogin:" + e.getMessage() + e.getStackTrace());
-			System.out.println("IsCanLogin:" + e.getMessage()
+		} catch (IOException e) {
+			logger.error("isLoginRight:" + e.getMessage() + e.getStackTrace());
+			System.out.println("isLoginRight:" + e.getMessage()
 					+ e.getStackTrace());
 			return false;
 		}
 
-	}
-
-	public String getSessionId() {
-		return sessionId;
 	}
 
 }
