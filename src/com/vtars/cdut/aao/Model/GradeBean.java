@@ -218,12 +218,25 @@ public class GradeBean implements Serializable, Comparable<Object> {
 
 	@Override
 	public String toString() {
-		return "GradeBean [Username=" + user.getUsername() + ", term=" + term
-				+ ", teachNo=" + teachNo + ", courseName=" + courseName
-				+ ", grade=" + grade + ", gradeRank=" + gradeRank
-				+ ", gradeState=" + gradeState + ", studyTimes=" + studyTimes
-				+ ", credit=" + credit + ", remark=" + remark + ", updateTime="
-				+ updateTime + "]";
-	}
+		/*
+		 * "GradeBean [Username=" + user.getUsername() + ", term=" + term +
+		 * ", teachNo=" + teachNo + ", courseName=" + courseName + ", grade=" +
+		 * grade + ", gradeRank=" + gradeRank + ", gradeState=" + gradeState +
+		 * ", studyTimes=" + studyTimes + ", credit=" + credit + ", remark=" +
+		 * remark + ", updateTime=" + updateTime + "]";
+		 */
+		String aString = "GradeBean [Username=" + (user == null ? "?" : user
+				.getUsername());
+		String bString = ", term=" + term;
+		String cString = ", teachNo=" + teachNo + ", courseName=" + courseName;
+		String dString = ", grade=" + grade + ", gradeRank=" + gradeRank;
+		String estring = ", gradeState=" + gradeState + ", studyTimes="
+				+ studyTimes;
+		String fString = ", credit=" + credit + ", remark=" + remark
+				+ ", updateTime=";
+		String gString = updateTime + "]";
+		return aString + bString + cString + dString + estring + fString
+				+ gString;
 
+	}
 }

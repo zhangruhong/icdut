@@ -30,7 +30,7 @@ public class TestFetchDao {
 		boolean iscan = fl.isLoginRight("201113030214", "zhangruhong3302");
 		if (iscan) {
 			TreeSet<GradeBean> grades = fdao.fetchGrades(fl.getSessionId(),
-					new TreeMap());
+					new TreeMap<String, String>());
 			if (null != grades && !grades.isEmpty()) {
 				for (GradeBean grade : grades) {
 					System.out.println(grade);
