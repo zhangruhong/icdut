@@ -11,10 +11,12 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.stereotype.Repository;
 
 import com.vtars.cdut.aao.Model.GradeBean;
 import com.vtars.cdut.aao.Utils.LogUtil;
 
+@Repository("fetchdatadao")
 public class FetchDataDao implements IFetchDataDao {
 	private static Logger logger = LogUtil.logger;
 
