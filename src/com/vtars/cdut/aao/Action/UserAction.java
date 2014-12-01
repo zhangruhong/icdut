@@ -14,7 +14,11 @@ import org.springframework.web.context.ServletContextAware;
 
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.validator.annotations.RegexFieldValidator;
+import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import com.opensymphony.xwork2.validator.annotations.StringLengthFieldValidator;
+import com.opensymphony.xwork2.validator.annotations.Validation;
+import com.opensymphony.xwork2.validator.annotations.Validations;
 import com.opensymphony.xwork2.validator.annotations.ValidatorType;
 import com.vtars.cdut.aao.Dao.FetchDao.FetchLogin;
 import com.vtars.cdut.aao.Dao.FetchDao.IFetchDataDao;
@@ -57,7 +61,6 @@ public class UserAction extends ActionSupport implements Action,
 		return username;
 	}
 
-	@StringLengthFieldValidator(type = ValidatorType.FIELD, minLength = "12", maxLength = "13", message = "登录名不能为空！", trim = true)
 	public void setUsername(String username) {
 		this.username = username;
 	}
@@ -66,23 +69,24 @@ public class UserAction extends ActionSupport implements Action,
 		return password;
 	}
 
-	@StringLengthFieldValidator(type = ValidatorType.FIELD, minLength = "1", maxLength = "16", message = "密码不能为空！", trim = true)
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
 	public String userLogin() {
-		FetchLogin fl = new FetchLogin();
-		boolean isRight = fl.isLoginRight(username, password);
-		if (!isRight) {
-			return INPUT;
-			// 加个提示 账号密码不匹配
-		}
-		String sessionid = fl.getSessionId();
-		// 将aaosession设置到session里
-		 request.getSession().setAttribute("aaosession", sessionid);
-		 return SUCCESS;
-		
+		// FetchLogin fl = new FetchLogin();
+		// boolean isRight = fl.isLoginRight(username, password);
+		// if (!isRight) {
+		// return INPUT;
+		// // 加个提示 账号密码不匹配
+		// }
+		// String sessionid = fl.getSessionId();
+		// // 将aaosession设置到session里
+		// request.getSession().setAttribute("aaosession", sessionid);
+		String aString = username + password;
+		System.out.println(aString);
+		return SUCCESS;
+
 		/*
 		 * // 这里增加一个验证是否存在未评价的函数 ArrayList<String> al =
 		 * CheckExitsNoEvaluate(lw.getSessionId()); if (al != null && al.size()
@@ -135,17 +139,17 @@ public class UserAction extends ActionSupport implements Action,
 
 	@Override
 	public void setServletContext(ServletContext context) {
-		this.context=context;
+		this.context = context;
 	}
 
 	@Override
 	public void setServletResponse(HttpServletResponse response) {
-		this.response=response;
+		this.response = response;
 	}
 
 	@Override
 	public void setServletRequest(HttpServletRequest request) {
-		this.request=request;
+		this.request = request;
 	}
 
 }

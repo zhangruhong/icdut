@@ -23,9 +23,11 @@
 		<action name="defaultAction">
 			<result name="success">/WEB-INF/index/index.jsp</result>
 		</action>
-		
-		<action name="loginpage" class="com.vtars.cdut.aao.Action.LoginAction" method="userLogin">
+
+		<action name="loginpage" class="com.vtars.cdut.aao.Action.UserAction"
+			method="userLogin">
 			<result name="success">/success.jsp</result>
+			<result name="input">/login.jsp</result>
 			<result name="error">/error1.jsp</result>
 		</action>
 

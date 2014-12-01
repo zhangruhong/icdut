@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC
+  		"-//Apache Struts//XWork Validator 1.0.3//EN"
+  		"http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+<validators>
+	<field name="username">
+		<field-validator type="requiredstring">
+			<message><![CDATA[账号不能为空]]></message>
+		</field-validator>
+		<field-validator type="stringlength">
+			<param name="minLength">12</param>
+			<param name="maxLength">13</param>
+			<message><![CDATA[账号长度不对（12~13）]]></message>
+		</field-validator>
+	</field>
+	<field name="password">
+		<field-validator type="requiredstring">
+			<message><![CDATA[密码不能为空]]></message>
+		</field-validator>
+		<field-validator type="stringlength">
+			<param name="minLength">6</param>
+			<param name="maxLength">16</param>
+			<message><![CDATA[密码长度不对（6~16）]]>
+			</message>
+		</field-validator>
+	</field>
+</validators>
