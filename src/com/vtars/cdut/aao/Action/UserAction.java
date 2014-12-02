@@ -31,6 +31,7 @@ import com.vtars.cdut.aao.Model.User;
 import com.vtars.cdut.aao.Model.UserDetail;
 import com.vtars.cdut.aao.Service.IUserService;
 import com.vtars.cdut.aao.Utils.LogUtil;
+import com.vtars.cdut.aao.Utils.Thread.DownGradesThread;
 
 public class UserAction extends ActionSupport implements Action,
 		ServletContextAware, ServletRequestAware, ServletResponseAware {
@@ -93,73 +94,67 @@ public class UserAction extends ActionSupport implements Action,
 		// 将aaosession设置到session里
 		request.getSession().setAttribute("aaosession", sessionid);
 
-		
-		// 这里增加一个验证是否存在未评价的函数 
-		ArrayList<String> al =fetchdatadao.CheckExitsNoEvaluate(fl.getSessionId());
-		if (al != null && al.size() > 1) 
-		{ 
+		// 这里增加一个验证是否存在未评价的函数
+		ArrayList<String> al = fetchdatadao.CheckExitsNoEvaluate(fl
+				.getSessionId());
+		if (al != null && al.size() > 1) {
 			System.out.println("未评价处理调试跟踪:" + username);
 			request.setAttribute("al", al);
 			request.getRequestDispatcher("/Home/waitEvaluateList.jsp").forward(
-			request, response); 
-			return; 
+					request, response);
+			return;
 		}
-		// 查看是否存在该用户 /存在则更新密码 
-		User user =userService.findUserById(username);
-		if (null == user) // 不存在则创建新用户 
-			{
-			user=new User();
+		// 查看是否存在该用户 /存在则更新密码
+		User user = userService.findUserById(username);
+		if (null == user) // 不存在则创建新用户
+		{
+			user = new User();
 			user.setUsername(username);
 			user.setPassword(password);
 			user.setActivestate(true);
-			UserDetail ud=new UserDetail();
+			UserDetail ud = new UserDetail();
 			ud.setSelfIntro("还没有备注信息哦");
 			user.setUserdetail(ud);
 			userService.add(user);
 			logger.info("欢迎新用户：" + username);
-		 }
-		
-		// 教务系统数据与网站数据不同 更新 不去首位空格.torm() 因为怕别人密码本身有空格
-	if (!user.getPassword().equals(password))
-		{ 
-		user.setPassword(password);
-		userService.update(user);
-		logger.info("教务系统数据与网站数据不同!执行更新"+username); 
 		}
-		
-		// 走到这里  说明已经登录成功了
-		
-		// 这里应该启动一个线程将成绩down下来存到数据库 
-		DownGradesThread dgt = new DownGradesThread(sessionid, user); 
+
+		// 教务系统数据与网站数据不同 更新 不去首位空格.torm() 因为怕别人密码本身有空格
+		if (!user.getPassword().equals(password)) {
+			user.setPassword(password);
+			userService.update(user);
+			logger.info("教务系统数据与网站数据不同!执行更新" + username);
+		}
+
+		// 走到这里 说明已经登录成功了
+
+		// 这里应该启动一个线程将成绩down下来存到数据库
+		DownGradesThread dgt = new DownGradesThread(sessionid, user);
 		dgt.start();
-		
-		request.getSession(true).setAttribute("user", user); 
+
+		request.getSession(true).setAttribute("user", user);
 		Calendar nowtime = Calendar.getInstance();
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd-HH-mm"); 
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd-HH-mm");
 		String time = format.format(nowtime.getTime());
 		request.getSession().setAttribute("logintime", time);
-		
-		
+
 		// 检查用户是否已激活 if (false == user.isActive()) { // N 转发到信息不全界面
 		request.setAttribute("user", user);
-		request.getRequestDispatcher("/Home/LinkwithEmail.jsp")
-		.forward(request, response);
-		return; 
-		}
-//		设置多说评论登录cookie 过期时间2天
-		
-		
-//		String showname = (user.getNick() == null ||
-//		"".equals(user.getNick())) ? username : user.getNick(); Cookie
-//		duoshuoCookie = new Cookie("duoshuo_token", LocalComment.dojwt(
-//		username, showname)); duoshuoCookie.setMaxAge(60 * 60 * 24 * 2);
-//		duoshuoCookie.setPath(request.getContextPath());
-//		response.addCookie(duoshuoCookie);
-//		response.sendRedirect(request.getContextPath() +
-//		"/Home/MyAAO/index.jsp");
-		
-
+		request.getRequestDispatcher("/Home/LinkwithEmail.jsp").forward(
+				request, response);
+		return;
 	}
+
+	// 设置多说评论登录cookie 过期时间2天
+
+	// String showname = (user.getNick() == null ||
+	// "".equals(user.getNick())) ? username : user.getNick(); Cookie
+	// duoshuoCookie = new Cookie("duoshuo_token", LocalComment.dojwt(
+	// username, showname)); duoshuoCookie.setMaxAge(60 * 60 * 24 * 2);
+	// duoshuoCookie.setPath(request.getContextPath());
+	// response.addCookie(duoshuoCookie);
+	// response.sendRedirect(request.getContextPath() +
+	// "/Home/MyAAO/index.jsp");
 
 	@Override
 	public void setServletContext(ServletContext context) {
