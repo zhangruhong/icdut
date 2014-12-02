@@ -3,6 +3,7 @@ package com.vtars.cdut.aao.Dao.GradeDao;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.TreeSet;
 
 import javax.annotation.Resource;
@@ -24,13 +25,19 @@ public class GradeDao extends HibernateDaoSupport implements IGradeDao {
 	}
 
 	@Override
-	public void addGrades(TreeSet<GradeBean> ts) {
+	public void addGrades(TreeSet<GradeBean> ts, User u) {
 		int i = 0;// 计数器
 		if (null == ts || ts.isEmpty()) {
 			return;
 		}
 		for (GradeBean gb : ts) {
 			// TODO 想要批量插入提高性能 使用HibernateCallback思路吧
+
+			Set<GradeBean> grades = u.getGrades();
+			grades.addAll(ts);
+			u.setGrades(grades);
+
+			gb.setUser(u);
 			Serializable id = this.getHibernateTemplate().save(gb);
 			System.err.println(gb.toString());
 			// 防止缓存溢出??
@@ -80,5 +87,12 @@ public class GradeDao extends HibernateDaoSupport implements IGradeDao {
 			}
 		}
 		return q;
+	}
+
+	@Override
+	public GradeBean queryLastDateGrades(String username) {
+		String hql = "from GradeBean gb where gb.user.user=? order by gb.updateTime desc limit 1";
+		Query query = setParamterQuery(hql, new Object[] { username });
+		return (GradeBean) query.uniqueResult();
 	}
 }

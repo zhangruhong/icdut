@@ -1,31 +1,19 @@
-package com.vtars.cdut.aao.Dao.GradeDao;
+package com.vtars.cdut.aao.Service;
 
 import java.util.ArrayList;
 import java.util.TreeSet;
 
-import javax.management.Query;
-
 import com.vtars.cdut.aao.Model.GradeBean;
 import com.vtars.cdut.aao.Model.User;
 
-/**
- * 定义成绩的操作 包括 批量增加成绩（AddGrades） 包括 批量删除成绩（deleteGrades） 包括
- * 查出某个学生的成绩（ListGradesById） 包括按照条件查找成绩（QueryByHql(String hql,Object[] args)）
- * 
- * 
- * @author jack
- *
- */
-public interface IGradeDao {
-
+public interface IGradeService {
 	/**
 	 * 批量入库成绩——需要判断成绩是否已经存在
 	 * 
 	 * @param studyid
 	 * @param ts
-	 * @param u 
 	 */
-	public void addGrades(TreeSet<GradeBean> ts, User u);
+	public void addGrades(TreeSet<GradeBean> ts,User u);
 
 	/**
 	 * 删除该用户的所有成绩记录
@@ -52,5 +40,4 @@ public interface IGradeDao {
 	public ArrayList<GradeBean> queryByHql(String hql, Object[] args);
 
 	public  GradeBean queryLastDateGrades(String username);
-
 }

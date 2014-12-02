@@ -1,6 +1,7 @@
 package com.vtars.cdut.aao.Dao.FetchDao;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -109,4 +110,25 @@ public class FetchDataDao implements IFetchDataDao {
 
 	}
 
+	@Override
+	public ArrayList<String> CheckExitsNoEvaluate(String sessionId) {
+		String urlString = "http://202.115.133.161/pj_xspj/pj_xspj.php";
+		Document objectDoc = null;
+		ArrayList<String> al = new ArrayList<String>();
+		try {
+			objectDoc = Jsoup.connect(urlString).cookie("PHPSESSID", sessionId)
+					.get();
+			Elements elements = objectDoc.select("input:not([style])");
+			System.out.println("elements:" + elements);
+			if (null != elements && elements.size() > 1) {
+				for (Element element : elements) {
+					al.add(element.attr("onclick")
+							.replace("fm1.jxbh.value='", "").replace("';", ""));
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return al;
+	}
 }

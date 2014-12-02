@@ -1,5 +1,6 @@
 package com.vtars.cdut.aao.Dao.FetchDao;
 
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeSet;
 
@@ -33,5 +34,12 @@ public interface IFetchDataDao {
 	 * @return
 	 */
 	public Map<String, String> fetchNewsUrls(String AAO_URL);
+
+	/**
+	 * 检查是否存在未评论的成绩
+	 * @param sessionId
+	 * @return
+	 */
+	public ArrayList<String> CheckExitsNoEvaluate(String sessionId);
 
 }
